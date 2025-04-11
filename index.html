@@ -1,22 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Text Chat</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Real-Time Chat - xxxx.github.io</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+  <style>
+    body {
+      font-family: Arial;
+      background: #1a1a1a;
+      color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    #chatbox {
+      flex: 1;
+      overflow-y: auto;
+      padding: 15px;
+      background: #2c2c2c;
+    }
+    .message {
+      margin-bottom: 10px;
+    }
+    #inputBox {
+      display: flex;
+      background: #111;
+      padding: 10px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    input {
+      flex: 1;
+      margin-right: 10px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <div class="chat-container">
-    <div class="chat-header">Chat Room</div>
-    <div class="chat-box" id="chatBox"></div>
-    <div class="chat-input">
-      <input type="text" id="username" placeholder="Your name" />
-      <input type="text" id="messageInput" placeholder="Type a message" />
-      <button onclick="sendMessage()">Send</button>
-    </div>
+
+  <div id="chatbox"></div>
+
+  <div id="inputBox">
+    <input type="text" id="username" placeholder="Your name" />
+    <input type="text" id="message" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // TODO: Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // Send Message
+    function sendMessage() {
+      const username = document.getElementById("username").value;
+      const message = document.getElementById("message").value;
+      if (username && message) {
+        db.ref("messages").push({
+          name: username,
+          text: message,
+          timestamp: Date.now()
+        });
+        document.getElementById("message").value = "";
+      }
+    }
+
+    // Display Messages
+    db.ref("messages").on("child_added", function(snapshot) {
+      const data = snapshot.val();
+      const msg = document.createElement("div");
+      msg.classList.add("message");
+      msg.innerHTML = `<strong>${data.name}</strong>: ${data.text}`;
+      document.getElementById("chatbox").appendChild(msg);
+      document.getElementById("chatbox").scrollTop = document.getElementById("chatbox").scrollHeight;
+    });
+  </script>
 </body>
 </html>
