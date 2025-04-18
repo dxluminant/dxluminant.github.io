@@ -10,7 +10,9 @@
       text-align: center;
       padding: 40px;
       background-color: #f4f4f4;
+      margin: 0;
     }
+
     #redirectBtn {
       padding: 15px 30px;
       font-size: 18px;
@@ -21,10 +23,19 @@
       cursor: pointer;
       margin-top: 20px;
     }
+
     #countdown {
       font-size: 20px;
       margin-top: 20px;
       display: none;
+    }
+
+    /* Fixed position for the 160x600 ad */
+    .side-ad {
+      position: fixed;
+      top: 20px;
+      right: 10px;
+      z-index: 100;
     }
   </style>
 </head>
@@ -33,7 +44,7 @@
   <h1>Welcome!</h1>
   <p>Click the button below to continue to our Telegram channel.</p>
 
-  <!-- Adsterra Native Banner -->
+  <!-- Native Banner Adsterra -->
   <script async="async" data-cfasync="false" src="//pl26413333.profitableratecpm.com/b920ded188db20c2cacaa2c67047a6b1/invoke.js"></script>
   <div id="container-b920ded188db20c2cacaa2c67047a6b1"></div>
 
@@ -41,6 +52,21 @@
   <button id="redirectBtn">Redirect</button>
   <div id="countdown">Redirecting in <span id="timer">10</span> seconds...</div>
 
+  <!-- 160x600 Ad in a floating div -->
+  <div class="side-ad">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'f0fa917da1a76470a81a73f11e878af7',
+        'format' : 'iframe',
+        'height' : 600,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/f0fa917da1a76470a81a73f11e878af7/invoke.js"></script>
+  </div>
+
+  <!-- Countdown Script -->
   <script>
     const btn = document.getElementById('redirectBtn');
     const countdown = document.getElementById('countdown');
