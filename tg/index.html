@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>arovi nusrat ridhi's viral link | All viral video</title>
+  <title>arovi nusrat ridhi's viral video | All viral video</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -79,6 +79,45 @@
         height: 250px;
       }
     }
+
+    /* Telegram Button Styles */
+    #telegramBtn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 999;
+      text-decoration: none;
+      display: none;
+    }
+
+    .pulse-circle {
+      width: 60px;
+      height: 60px;
+      background: #0088cc;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 rgba(0, 136, 204, 0.7);
+      animation: pulse 2s infinite;
+    }
+
+    .pulse-circle img {
+      width: 40px;
+      height: 40px;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(0, 136, 204, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 136, 204, 0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -150,11 +189,28 @@
     <script type="text/javascript" src="//ushermassacrecranny.com/946e2fcbe62a383a2e22e228522d7fca/invoke.js"></script>
   </div>
 
+  <!-- Telegram Floating Button -->
+  <a href="https://t.me/roxx6969" target="_blank" id="telegramBtn">
+    <div class="pulse-circle">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram">
+    </div>
+  </a>
+
   <!-- JavaScript to change video -->
   <script>
     function playVideo(url) {
       document.getElementById("mainVideo").src = url;
     }
+
+    // Show Telegram button on scroll
+    window.addEventListener('scroll', function () {
+      const telegramBtn = document.getElementById('telegramBtn');
+      if (window.scrollY > 200) {
+        telegramBtn.style.display = 'block';
+      } else {
+        telegramBtn.style.display = 'none';
+      }
+    });
   </script>
 
 </body>
