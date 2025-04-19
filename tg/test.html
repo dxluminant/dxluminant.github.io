@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Watch Videos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .video-player {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    iframe, video {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .video-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .video-item {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    .video-item:hover {
+      background-color: rgba(0, 136, 204, 0.6);
+    }
+
+    .ad-container {
+      margin: 30px auto;
+    }
+
+    .side-ad {
+      position: fixed;
+      top: 20px;
+      right: 10px;
+      z-index: 100;
+    }
+
+    .bottom-banner, .wide-banner {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .side-ad {
+        display: none;
+      }
+
+      iframe, video {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Featured Videos</h1>
+
+  <!-- Native Banner Ad -->
+  <script async="async" data-cfasync="false" src="//pl26413333.profitableratecpm.com/b920ded188db20c2cacaa2c67047a6b1/invoke.js"></script>
+  <div id="container-b920ded188db20c2cacaa2c67047a6b1"></div>
+
+  <!-- 728x90 Banner Ad -->
+  <div class="wide-banner">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'f831d8c2f238a3eefd43e0c5a7a38dbe',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//ushermassacrecranny.com/f831d8c2f238a3eefd43e0c5a7a38dbe/invoke.js"></script>
+  </div>
+
+  <!-- Video Player -->
+  <div class="video-player">
+    <iframe id="mainVideo" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+  </div>
+
+  <!-- Video List -->
+  <div class="video-list">
+    <div class="video-item" onclick="playVideo('/
+720p.h264 (1)_Trim.mp4')">Video 1: Rickroll 😏</div>
+    <div class="video-item" onclick="playVideo('https://www.youtube.com/embed/9bZkp7q19f0')">Video 2: Gangnam Style</div>
+    <div class="video-item" onclick="playVideo('https://www.youtube.com/embed/l482T0yNkeo')">Video 3: Bohemian Rhapsody</div>
+    <div class="video-item" onclick="playVideo('https://www.youtube.com/embed/J---aiyznGQ')">Video 4: Nyan Cat</div>
+  </div>
+
+  <!-- 160x600 Side Ad -->
+  <div class="side-ad">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'f0fa917da1a76470a81a73f11e878af7',
+        'format' : 'iframe',
+        'height' : 600,
+        'width' : 160,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/f0fa917da1a76470a81a73f11e878af7/invoke.js"></script>
+  </div>
+
+  <!-- Popunder Script -->
+  <script type="text/javascript" src="//ushermassacrecranny.com/14/b0/cc/14b0cc38e6ddb2d957172517f89ba3af.js"></script>
+
+  <!-- Social Bar Script -->
+  <script type="text/javascript" src="//ushermassacrecranny.com/f4/f3/f3/f4f3f3e79a91b85f919446e65635bc3c.js"></script>
+
+  <!-- 468x60 Bottom Banner -->
+  <div class="bottom-banner">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '946e2fcbe62a383a2e22e228522d7fca',
+        'format' : 'iframe',
+        'height' : 60,
+        'width' : 468,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//ushermassacrecranny.com/946e2fcbe62a383a2e22e228522d7fca/invoke.js"></script>
+  </div>
+
+  <!-- JavaScript to change video -->
+  <script>
+    function playVideo(url) {
+      document.getElementById("mainVideo").src = url;
+    }
+  </script>
+
+</body>
+</html>
