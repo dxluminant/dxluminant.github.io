@@ -3,26 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>arovi nusrat ridhi's viral video | All viral video</title>
+  <title>Arovi nusrat ridhi's viral video | All viral video</title>
   <style>
+    :root {
+      --bg-light: #f2f2f2;
+      --bg-dark: #121212;
+      --text-light: #ffffff;
+      --text-dark: #000000;
+      --accent: #0088cc;
+    }
+
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
       background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
       background-size: cover;
       color: white;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    body.dark {
+      background: #121212;
+      color: var(--text-light);
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav h2 {
       margin: 0;
-      padding: 20px;
+      font-size: 20px;
+    }
+
+    .toggle-btn {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 20px;
+      cursor: pointer;
     }
 
     h1 {
       text-align: center;
+      margin: 20px 0;
     }
 
     .video-player {
       width: 100%;
       max-width: 800px;
       margin: 20px auto;
-      position: relative;
     }
 
     iframe, video {
@@ -37,7 +77,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
-      margin-top: 20px;
+      margin: 20px;
     }
 
     .video-item {
@@ -53,10 +93,6 @@
       background-color: rgba(0, 136, 204, 0.6);
     }
 
-    .ad-container {
-      margin: 30px auto;
-    }
-
     .side-ad {
       position: fixed;
       top: 20px;
@@ -67,6 +103,14 @@
     .bottom-banner, .wide-banner {
       display: flex;
       justify-content: center;
+      margin: 30px 0;
+    }
+
+    footer {
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      text-align: center;
+      padding: 15px;
       margin-top: 30px;
     }
 
@@ -80,7 +124,7 @@
       }
     }
 
-    /* Telegram Button Styles */
+    /* Telegram Button */
     #telegramBtn {
       position: fixed;
       bottom: 20px;
@@ -93,12 +137,11 @@
     .pulse-circle {
       width: 60px;
       height: 60px;
-      background: #0088cc;
+      background: var(--accent);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 0 rgba(0, 136, 204, 0.7);
       animation: pulse 2s infinite;
     }
 
@@ -121,6 +164,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
+  <nav>
+    <h2>Viral Videos</h2>
+    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  </nav>
 
   <h1>Scroll down to see viral video!</h1>
 
@@ -151,8 +200,8 @@
   <div class="video-list">
     <div class="video-item" onclick="playVideo('https://dxluminant.github.io/tg/pk.mp4')">Video 1</div>
     <div class="video-item" onclick="playVideo('https://dxluminant.github.io/tg/ak.mp4')">Video 2</div>
-    <div class="video-item" onclick="playVideo('https://www.youtube.com/embed/l482T0yNkeo')">Video 3: Bohemian Rhapsody</div>
-    <div class="video-item" onclick="playVideo('https://www.youtube.com/embed/J---aiyznGQ')">Video 4: Nyan Cat</div>
+    <div class="video-item" onclick="playVideo('https://www.youtube.com/embed/l482T0yNkeo')">Bohemian Rhapsody</div>
+    <div class="video-item" onclick="playVideo('https://www.youtube.com/embed/J---aiyznGQ')">Nyan Cat</div>
   </div>
 
   <!-- 160x600 Side Ad -->
@@ -169,13 +218,13 @@
     <script type="text/javascript" src="//www.highperformanceformat.com/f0fa917da1a76470a81a73f11e878af7/invoke.js"></script>
   </div>
 
-  <!-- Popunder Script -->
+  <!-- Popunder -->
   <script type="text/javascript" src="//ushermassacrecranny.com/14/b0/cc/14b0cc38e6ddb2d957172517f89ba3af.js"></script>
 
-  <!-- Social Bar Script -->
+  <!-- Social Bar -->
   <script type="text/javascript" src="//ushermassacrecranny.com/f4/f3/f3/f4f3f3e79a91b85f919446e65635bc3c.js"></script>
 
-  <!-- 468x60 Bottom Banner -->
+  <!-- Bottom Banner -->
   <div class="bottom-banner">
     <script type="text/javascript">
       atOptions = {
@@ -196,21 +245,31 @@
     </div>
   </a>
 
-  <!-- JavaScript to change video -->
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Viral Video Hub | All rights reserved.
+  </footer>
+
+  <!-- Scripts -->
   <script>
     function playVideo(url) {
       document.getElementById("mainVideo").src = url;
     }
 
-    // Show Telegram button on scroll
-    window.addEventListener('scroll', function () {
-      const telegramBtn = document.getElementById('telegramBtn');
+    // Telegram Button on Scroll
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('telegramBtn');
       if (window.scrollY > 200) {
-        telegramBtn.style.display = 'block';
+        btn.style.display = 'block';
       } else {
-        telegramBtn.style.display = 'none';
+        btn.style.display = 'none';
       }
     });
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
   </script>
 
 </body>
