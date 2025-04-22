@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Redirect Link Generator</title>
+  <title>Encrypted Redirect Link Generator</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -45,7 +45,14 @@
     #output {
       margin-top: 20px;
       font-size: 16px;
-      word-break: break-all;
+      word-break: break-word;
+      text-align: center;
+    }
+
+    #copyButton {
+      margin-top: 10px;
+      display: none;
+      background-color: #00cc66;
     }
 
     a {
@@ -55,14 +62,19 @@
 </head>
 <body>
 
-  <h1>Redirect Link Generator</h1>
+  <h1>Encrypted Redirect Link Generator</h1>
 
   <input type="text" id="urlInput" placeholder="Enter any URL..." />
-  <button onclick="generateLink()">Generate Redirect Link</button>
+  <button onclick="generateLink()">Generate Encrypted Link</button>
 
   <div id="output"></div>
+  <button id="copyButton" onclick="copyToClipboard()">Copy URL</button>
 
   <script>
+    function base64Encode(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+
     function generateLink() {
       const url = document.getElementById("urlInput").value.trim();
       if (!url) {
@@ -70,13 +82,26 @@
         return;
       }
 
-      const encoded = encodeURIComponent(url);
-      const redirectLink = `https://dxluminant.github.io/redirect.html?link=${encoded}`;
+      const encrypted = base64Encode(url);
+      const redirectLink = `https://dxluminant.github.io/redirect.html?link=${encrypted}`;
 
       document.getElementById("output").innerHTML = `
-        <strong>Generated Link:</strong><br>
-        <a href="${redirectLink}" target="_blank">${redirectLink}</a>
+        <strong>Encrypted Link:</strong><br>
+        <a href="${redirectLink}" target="_blank" id="generatedLink">${redirectLink}</a>
       `;
+
+      document.getElementById("copyButton").style.display = "inline-block";
+    }
+
+    function copyToClipboard() {
+      const linkText = document.getElementById("generatedLink").textContent;
+      navigator.clipboard.writeText(linkText).then(() => {
+        const btn = document.getElementById("copyButton");
+        btn.textContent = "Copied!";
+        setTimeout(() => {
+          btn.textContent = "Copy URL";
+        }, 2000);
+      });
     }
   </script>
 
