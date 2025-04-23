@@ -7,63 +7,69 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
-      background-size: cover;
+      background: #121212;
       color: #fff;
-      text-align: center;
-      padding: 40px 20px;
       margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .container {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 30px;
+      background-color: rgba(0,0,0,0.85);
+      padding: 20px;
       border-radius: 15px;
+      text-align: center;
       max-width: 500px;
-      margin: 0 auto;
+      width: 100%;
     }
 
     h1 {
-      margin-bottom: 20px;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
     }
 
     button {
-      padding: 12px 25px;
-      font-size: 18px;
+      padding: 14px 24px;
+      font-size: 1rem;
       background-color: #00bcd4;
       border: none;
       border-radius: 8px;
       color: white;
       cursor: pointer;
       margin-top: 20px;
+      width: 100%;
+    }
+
+    .back-button {
+      background-color: #555;
+      margin-top: 10px;
     }
 
     #countdown {
-      font-size: 28px;
+      font-size: 1.3rem;
       margin-top: 20px;
       display: none;
       animation: pulse 1s infinite;
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.7; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    #spinner {
-      margin: 20px auto;
-      display: none;
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.75; }
     }
 
     .spinner {
-      width: 50px;
-      height: 50px;
-      border: 6px solid rgba(255,255,255,0.2);
+      display: none;
+      width: 40px;
+      height: 40px;
+      border: 6px solid rgba(255, 255, 255, 0.2);
       border-top-color: #00bcd4;
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      margin: 0 auto;
+      margin: 20px auto;
     }
 
     @keyframes spin {
@@ -71,30 +77,68 @@
     }
 
     .ad-container {
-      margin: 20px 0;
+      margin: 20px auto;
+      width: 100%;
+      text-align: center;
+    }
+
+    iframe {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .telegram-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #0088cc;
+      color: #fff;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      z-index: 9999;
+    }
+
+    .telegram-icon img {
+      width: 30px;
+      height: 30px;
+    }
+
+    #qrcode {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>You are being redirected</h1>
-    <p>Please wait for the countdown to complete...</p>
+    <h1>Redirecting to Destination</h1>
+    <p>Click the button to start the redirection process.</p>
 
     <button onclick="startRedirect()">Redirect Now</button>
-    
+    <button class="back-button" onclick="history.back()">Go Back</button>
+
     <div id="spinner" class="spinner"></div>
     <div id="countdown">Redirecting in <span id="timer">10</span> seconds...</div>
 
-    <!-- Native Banner Ad -->
-    <div class="ad-container">
-      <script async="async" data-cfasync="false" src="//pl26413333.profitableratecpm.com/b920ded188db20c2cacaa2c67047a6b1/invoke.js"></script>
-      <div id="container-b920ded188db20c2cacaa2c67047a6b1"></div>
-    </div>
+    <div id="qrcode"></div>
   </div>
 
-  <!-- Other Ads -->
-  <!-- 728x90 Banner -->
+  <!-- Floating Telegram Icon -->
+  <a href="https://t.me/your_channel" class="telegram-icon" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" alt="Telegram"/>
+  </a>
+
+  <!-- Aggressive Ads -->
+  <div class="ad-container">
+    <script async="async" data-cfasync="false" src="//pl26413333.profitableratecpm.com/b920ded188db20c2cacaa2c67047a6b1/invoke.js"></script>
+    <div id="container-b920ded188db20c2cacaa2c67047a6b1"></div>
+  </div>
+
   <div class="ad-container">
     <script type="text/javascript">
       atOptions = {
@@ -108,21 +152,6 @@
     <script type="text/javascript" src="//ushermassacrecranny.com/f831d8c2f238a3eefd43e0c5a7a38dbe/invoke.js"></script>
   </div>
 
-  <!-- 468x60 Banner -->
-  <div class="ad-container">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '946e2fcbe62a383a2e22e228522d7fca',
-        'format' : 'iframe',
-        'height' : 60,
-        'width' : 468,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//ushermassacrecranny.com/946e2fcbe62a383a2e22e228522d7fca/invoke.js"></script>
-  </div>
-
-  <!-- 160x600 Side Ad -->
   <div class="ad-container">
     <script type="text/javascript">
       atOptions = {
@@ -136,11 +165,16 @@
     <script type="text/javascript" src="//www.highperformanceformat.com/f0fa917da1a76470a81a73f11e878af7/invoke.js"></script>
   </div>
 
-  <!-- Popunder -->
-  <script type='text/javascript' src='//ushermassacrecranny.com/14/b0/cc/14b0cc38e6ddb2d957172517f89ba3af.js'></script>
+  <div class="ad-container">
+    <script type='text/javascript' src='//ushermassacrecranny.com/14/b0/cc/14b0cc38e6ddb2d957172517f89ba3af.js'></script>
+  </div>
 
-  <!-- Social Bar -->
-  <script type='text/javascript' src='//ushermassacrecranny.com/f4/f3/f3/f4f3f3e79a91b85f919446e65635bc3c.js'></script>
+  <div class="ad-container">
+    <script type='text/javascript' src='//ushermassacrecranny.com/f4/f3/f3/f4f3f3e79a91b85f919446e65635bc3c.js'></script>
+  </div>
+
+  <!-- QR Code Generator -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 
   <script>
     function getQueryParam(param) {
@@ -156,6 +190,14 @@
       }
     }
 
+    function generateQRCode(link) {
+      const qrDiv = document.getElementById('qrcode');
+      qrDiv.innerHTML = '';
+      QRCode.toCanvas(document.createElement('canvas'), link, { width: 200 }, function (err, canvas) {
+        if (!err) qrDiv.appendChild(canvas);
+      });
+    }
+
     function startRedirect() {
       const encoded = getQueryParam('link');
       const targetURL = decodeBase64(encoded);
@@ -165,11 +207,10 @@
         return;
       }
 
-      // Show spinner first
       document.getElementById('spinner').style.display = 'block';
+      generateQRCode(targetURL);
 
       setTimeout(() => {
-        // Hide spinner, show countdown
         document.getElementById('spinner').style.display = 'none';
         document.getElementById('countdown').style.display = 'block';
 
@@ -184,7 +225,7 @@
             window.location.href = targetURL;
           }
         }, 1000);
-      }, 1000); // Delay before countdown starts
+      }, 1000);
     }
   </script>
 </body>
