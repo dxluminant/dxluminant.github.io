@@ -1,1 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Encrypted Redirect Link Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #121212;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
 
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    input {
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #0088cc;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #output {
+      margin-top: 20px;
+      font-size: 16px;
+      word-break: break-word;
+      text-align: center;
+    }
+
+    #copyButton {
+      margin-top: 10px;
+      display: none;
+      background-color: #00cc66;
+    }
+
+    a {
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Encrypted Redirect Link Generator</h1>
+
+  <input type="text" id="urlInput" placeholder="Enter any URL..." />
+  <button onclick="generateLink()">Generate Encrypted Link</button>
+
+  <div id="output"></div>
+  <button id="copyButton" onclick="copyToClipboard()">Copy URL</button>
+
+  <script>
+    function base64Encode(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+
+    function generateLink() {
+      const url = document.getElementById("urlInput").value.trim();
+      if (!url) {
+        alert("Please enter a URL.");
+        return;
+      }
+
+      const encrypted = base64Encode(url);
+      const redirectLink = `https://shanjidulislam.blogspot.com/p/redirector.html?link=${encrypted}`;
+
+      document.getElementById("output").innerHTML = `
+        <strong>Encrypted Link:</strong><br>
+        <a href="${redirectLink}" target="_blank" id="generatedLink">${redirectLink}</a>
+      `;
+
+      document.getElementById("copyButton").style.display = "inline-block";
+    }
+
+    function copyToClipboard() {
+      const linkText = document.getElementById("generatedLink").textContent;
+      navigator.clipboard.writeText(linkText).then(() => {
+        const btn = document.getElementById("copyButton");
+        btn.textContent = "Copied!";
+        setTimeout(() => {
+          btn.textContent = "Copy URL";
+        }, 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>
