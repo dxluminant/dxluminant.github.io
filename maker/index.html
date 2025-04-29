@@ -94,16 +94,48 @@
 
       const redirectLink = `https://viralx6969.blogspot.com/p/redirector.html?link=${encryptedUrl}&title=${encryptedTitle}`;
 
-      document.getElementById("output").innerHTML = `
-        <strong>Encrypted Link:</strong><br>
-        <a href="${redirectLink}" target="_blank" id="generatedLink">${redirectLink}</a>
-      `;
+      // Now call the function to shorten the URL
+      shortenUrl(redirectLink);
+    }
 
-      document.getElementById("copyButton").style.display = "inline-block";
+    function shortenUrl(longUrl) {
+      const apiToken = 'Cg40u1KYh0EbhbbhvexIOcuvoGV4byt6bS4wL2PIeMZCN7bI3MzOsNhaYJUX';
+      const payload = {
+        url: longUrl,
+        domain: "tinyurl.com",
+        alias: "",
+        tags: "",
+        expires_at: "",
+        description: "Encrypted Redirect Link"
+      };
+
+      fetch(`https://api.tinyurl.com/create?api_token=${apiToken}`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.code === 0) {
+          const tinyUrl = data.data.tiny_url;
+          document.getElementById("output").innerHTML = `
+            <a href="${tinyUrl}" target="_blank">${tinyUrl}</a>
+          `;
+          document.getElementById("copyButton").style.display = "inline-block";
+        } else {
+          console.error('Error creating TinyURL:', data.errors);
+        }
+      })
+      .catch(error => {
+        console.error('Error with fetch request:', error);
+      });
     }
 
     function copyToClipboard() {
-      const linkText = document.getElementById("generatedLink").textContent;
+      const linkText = document.getElementById("output").textContent.trim();
       navigator.clipboard.writeText(linkText).then(() => {
         const btn = document.getElementById("copyButton");
         btn.textContent = "Copied!";
