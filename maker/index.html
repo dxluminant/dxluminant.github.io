@@ -73,8 +73,11 @@
   <button id="copyButton" onclick="copyToClipboard()">Copy URL</button>
 
   <script>
-    function base64Encode(str) {
-      return btoa(unescape(encodeURIComponent(str)));
+    function base64EncodeUnicode(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+        function(match, p1) {
+          return String.fromCharCode('0x' + p1);
+        }));
     }
 
     function generateLink() {
@@ -86,8 +89,8 @@
         return;
       }
 
-      const encryptedTitle = base64Encode(title);
-      const encryptedUrl = base64Encode(url);
+      const encryptedTitle = base64EncodeUnicode(title);
+      const encryptedUrl = base64EncodeUnicode(url);
 
       const redirectLink = `https://viralx6969.blogspot.com/p/redirector.html?link=${encryptedUrl}&title=${encryptedTitle}`;
 
