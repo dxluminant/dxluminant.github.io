@@ -20,6 +20,7 @@
 
     h1 {
       margin-bottom: 20px;
+      text-align: center;
     }
 
     input, button {
@@ -64,6 +65,7 @@
 
   <h1>Encrypted Redirect Link Generator</h1>
 
+  <input type="text" id="titleInput" placeholder="Enter page title..." />
   <input type="text" id="urlInput" placeholder="Enter any URL..." />
   <button onclick="generateLink()">Generate Encrypted Link</button>
 
@@ -76,14 +78,18 @@
     }
 
     function generateLink() {
+      const title = document.getElementById("titleInput").value.trim();
       const url = document.getElementById("urlInput").value.trim();
-      if (!url) {
-        alert("Please enter a URL.");
+
+      if (!title || !url) {
+        alert("Please enter both title and URL.");
         return;
       }
 
-      const encrypted = base64Encode(url);
-      const redirectLink = `https://viralx6969.blogspot.com/p/redirector.html?link=${encrypted}`;
+      const encryptedTitle = base64Encode(title);
+      const encryptedUrl = base64Encode(url);
+
+      const redirectLink = `https://viralx6969.blogspot.com/p/redirector.html?link=${encryptedUrl}&title=${encryptedTitle}`;
 
       document.getElementById("output").innerHTML = `
         <strong>Encrypted Link:</strong><br>
